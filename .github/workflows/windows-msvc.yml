@@ -225,7 +225,7 @@ jobs:
 
       - name: Upload package
         if:   ${{ !matrix.debugger }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.set_vars.outputs.pkg_dir }}-without-debugger
           path: ${{ steps.set_vars.outputs.pkg_dir }}
@@ -244,7 +244,7 @@ jobs:
 
       - name: Upload debugger artifact
         if:   ${{ matrix.debugger }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.set_vars.outputs.pkg_dir }}-with-debugger
           path: ${{ steps.set_vars.outputs.pkg_dir }}/dosbox_with_debugger.exe
@@ -263,7 +263,7 @@ jobs:
         arch: [x64, ARM64]
     steps:
       - name: Merge artifacts (${{ matrix.arch }} )
-        uses: actions/upload-artifact/merge@v4
+        uses: actions/upload-artifact/merge@v7
         with:
           name:    dosbox-staging-windows-${{ matrix.arch }}-${{ needs.build_windows_vs_release.outputs.dosbox_version }}
           pattern: dosbox-staging-windows-${{ matrix.arch }}-*
@@ -326,7 +326,7 @@ jobs:
           dir
 
       - name: Upload Windows installer
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.set_vars.outputs.pkg_dir }}-setup
           path: ${{ github.workspace }}\out\${{ steps.set_vars.outputs.pkg_dir }}-setup.exe
