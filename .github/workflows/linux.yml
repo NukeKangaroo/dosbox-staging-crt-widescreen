@@ -225,7 +225,7 @@ jobs:
             "dosbox-staging-linux-x86_64-$VERSION"
 
       - name: Upload tarball
-        uses: actions/upload-artifact@v4.3.1
+        uses: actions/upload-artifact@v7
         # GitHub automatically zips the artifacts (there's no way to create
         # a tarball), and it removes all executable flags while zipping.
         # Letting it zip a tarball preserves flags in the compressed files.
