@@ -808,8 +808,8 @@ public:                  // Access specifier
 					stack.pop_back();
 					const int left = stack.empty()
 					                       ? 0
-					                       : stack.back() + 1;
-					const int w    = x - left;
+					                       : stack.back() - 1; // adjusted used to be stack.back() + 1
+					const int w    = x - left + 2; // adjusted used to be x - left
 					const auto area = static_cast<int64_t>(w) * h;
 					if (area > largest_area) {
 						largest_area = area;
@@ -2488,7 +2488,12 @@ static bool present_bezel_only(const int drawable_width, const int drawable_heig
 {
 	// Match the original frame shader's crop and scale for each frame size.
 	const bool small_frame = shadermode == 3;
-	const float crop_left = small_frame ? 0.050f : 0.06729f;
+
+	// TODO: These crop values are hardcoded for the 3 bezel textures.
+	// Should be calculates instead.	
+	//const float crop_left = small_frame ? 0.050f : 0.06729f;
+	const float crop_left   = small_frame ? 0.050f : 0.063f;
+	//const float crop_left   = 0.06329f;
 	const float crop_top = small_frame ? 0.089f : 0.1034f;
 	const float crop_width = small_frame ? 0.91f : 0.87542f;
 	const float crop_height = small_frame ? 0.8f : 0.7712f;
